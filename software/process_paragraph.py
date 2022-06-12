@@ -3,7 +3,9 @@ from polnear import data
 
 def split_to_paragraphs(split):
     article_tokens_paragraphs_splitted = []
+    print("dev")
     for article in split:
+        print("art")
         annotated_article = article.annotated()
         #annotated_article.tokens[0]["attributions"]
         #annotated_article.tokens[0]["word"]
