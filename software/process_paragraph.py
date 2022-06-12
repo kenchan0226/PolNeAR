@@ -13,6 +13,7 @@ def split_to_paragraphs(split):
         paragraph_tokens = []
         j = 0
         while j < len(annotated_article.tokens):
+            print(j)
             token = annotated_article.tokens[j]
             if token["word"] == "\n" and annotated_article.tokens[j+1]["word"] == "\n":
                 all_paragraphs.append(paragraph_tokens)
