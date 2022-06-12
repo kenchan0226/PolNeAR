@@ -15,6 +15,8 @@ def split_to_paragraphs(split):
         while j < len(annotated_article.tokens):
             print(j)
             token = annotated_article.tokens[j]
+            if token["word"] == "\n":
+                print("linebreak")
             if token["word"] == "\n" and annotated_article.tokens[j+1]["word"] == "\n":
                 all_paragraphs.append(paragraph_tokens)
                 paragraph_tokens = []
