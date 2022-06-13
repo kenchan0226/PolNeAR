@@ -2,6 +2,7 @@ from polnear import data
 #import pickle as pkl
 from tqdm import tqdm
 import json
+import io
 
 
 def split_to_paragraphs(split):
@@ -32,8 +33,10 @@ def main(split_name):
     else:
         raise ValueError
     sample_list = split_to_paragraphs(split)
-    with open(split_name + ".json", "wb") as f_out:
-        json.dump(sample_list, f_out)
+    #io.open('filename', 'w', encoding='utf8')
+    #split_name + ".json"
+    with io.open(split_name + ".json", 'w', encoding='utf8') as f_out:
+        json.dump(sample_list, f_out, ensure_ascii=False)
 
 
 if __name__ == "__main__":
