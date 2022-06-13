@@ -5,14 +5,19 @@ from tqdm import tqdm
 
 def split_to_paragraphs(split):
     article_all = []
+    error_count = 0
     for article in tqdm(split):
-        annotated_article = article.annotated()
-        #annotated_article.tokens[0]["attributions"]
-        #annotated_article.tokens[0]["word"]
-        #article_tokens = [token for token in annotated_article.tokens]
-        #article_tokens_all.append(article_tokens)
-        token_annotations = [{"word": token["word"], "attributions": token["attributions"]} for token in annotated_article.tokens]
-        article_all.append({"text": article.text(), "token_annotations": token_annotations})
+        try:
+            annotated_article = article.annotated()
+            #annotated_article.tokens[0]["attributions"]
+            #annotated_article.tokens[0]["word"]
+            #article_tokens = [token for token in annotated_article.tokens]
+            #article_tokens_all.append(article_tokens)
+            token_annotations = [{"word": token["word"], "attributions": token["attributions"]} for token in annotated_article.tokens]
+            article_all.append({"text": article.text(), "token_annotations": token_annotations})
+        except:
+            error_count += 1
+    print("error count: {}".format(error_count))
     return article_all
 
 
@@ -31,5 +36,5 @@ def main(split_name):
 
 
 if __name__ == "__main__":
-    for split_name in ["dev", "train", "test"]:
+    for split_name in ["train", "test"]:
         main(split_name)
