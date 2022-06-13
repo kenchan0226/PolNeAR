@@ -10,7 +10,11 @@ def split_to_paragraphs(split):
     article_all = []
     error_count = 0
     for article in tqdm(split):
-        annotated_article = article.annotated()
+        try:
+            annotated_article = article.annotated()
+        except:
+            error_count += 1
+            continue
         #annotated_article.tokens[0]["attributions"]
         #annotated_article.tokens[0]["word"]
         #article_tokens = [token for token in annotated_article.tokens]
