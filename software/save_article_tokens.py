@@ -37,5 +37,5 @@ def main(split_name):
 
 
 if __name__ == "__main__":
-    for split_name in ["train", "test"]:
+    for split_name in ["dev", "train", "test"]:
         main(split_name)
