@@ -1,16 +1,18 @@
 from polnear import data
 import pickle as pkl
+from tqdm import tqdm
 
 
 def split_to_paragraphs(split):
-    article_tokens_all = []
-    for article in split:
+    article_all = []
+    for article in tqdm(split):
         annotated_article = article.annotated()
         #annotated_article.tokens[0]["attributions"]
         #annotated_article.tokens[0]["word"]
-        article_tokens = [token for token in annotated_article.tokens]
-        article_tokens_all.append(article_tokens)
-    return article_tokens_all
+        #article_tokens = [token for token in annotated_article.tokens]
+        #article_tokens_all.append(article_tokens)
+        article_all.append({"text": article.text, "token_annotations": annotated_article.tokens})
+    return article_all
 
 
 def main(split_name):
