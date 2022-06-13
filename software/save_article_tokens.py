@@ -11,8 +11,8 @@ def split_to_paragraphs(split):
         #annotated_article.tokens[0]["word"]
         #article_tokens = [token for token in annotated_article.tokens]
         #article_tokens_all.append(article_tokens)
-        token_annotations = [(token["word"], token["attributions"]) for token in annotated_article.tokens]
-        article_all.append({"text": article.text(), "token_annotations": annotated_article.tokens})
+        token_annotations = [{"word": token["word"], "attributions": token["attributions"]} for token in annotated_article.tokens]
+        article_all.append({"text": article.text(), "token_annotations": token_annotations})
     return article_all
 
 
