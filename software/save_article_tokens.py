@@ -16,8 +16,12 @@ def split_to_paragraphs(split):
             #annotated_article.tokens[0]["word"]
             #article_tokens = [token for token in annotated_article.tokens]
             #article_tokens_all.append(article_tokens)
-            token_annotations = [{"word": token["word"], "attributions": list(token["attributions"])} for token in annotated_article.tokens]
-            article_all.append({"text": article.text(), "token_annotations": token_annotations})
+            attributions_for_sentences = []
+            for sent in annotated_article.sentences:
+                sent_tokens_annotations = [{"word": token["word"], "attributions": list(token["attributions"])} for token in sent.tokens]
+                attributions_for_sentences.append(sent_tokens_annotations)
+            #token_annotations = [{"word": token["word"], "attributions": list(token["attributions"])} for token in annotated_article.tokens]
+            article_all.append({"text": article.text(), "attributions_for_sentences": attributions_for_sentences})
         except:
             error_count += 1
     print("error count: {}".format(error_count))
@@ -38,7 +42,7 @@ def main(split_name):
     #split_name + ".json"
     #with io.open(split_name + ".json", 'w', encoding='utf8') as f_out:
         #json.dump(sample_list, f_out, ensure_ascii=False)
-    with open(split_name + ".json", 'w') as f_out:
+    with open(split_name + "_sent.json", 'w') as f_out:
         json.dump(sample_list, f_out)
 
 if __name__ == "__main__":
